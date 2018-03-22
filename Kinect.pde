@@ -1,4 +1,5 @@
 boolean mirror = false;
+boolean align = true;
 PImage depthImg, rgbImg;
 
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
@@ -58,6 +59,10 @@ void setupKinect() {
   context.setMirror(mirror);
   context.enableDepth();
   context.enableRGB();
+  if (align) {
+    context.alternativeViewPointDepthToImage();
+    context.setDepthColorSyncEnabled(true);
+  }
 }
 
 void updateKinect() {

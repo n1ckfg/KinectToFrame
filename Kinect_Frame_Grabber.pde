@@ -17,7 +17,8 @@ void draw() {
   if (!isPlaying || frameList.size() < 1) {
     noTint();
     updateKinect();
-    image(depthImg, 0, 0);
+    image(rgbImg, 0, 0);
+    image(depthImg, 100, 0);
   } else if (isPlaying && frameList.size() > 0) {
     tint(0, 255, 0);
     image(frameList.get(0), 0, 0);
