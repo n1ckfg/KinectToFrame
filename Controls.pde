@@ -1,10 +1,12 @@
 void keyPressed() {
   if (key == ' ') {
+    redFlash.reset();
     initMask();
     processMask();
-    targetImg.save("capture/frame_" + zeroPadding(counter, 1000) + ".png");
+    String fileName = "capture/frame_" + zeroPadding(counter, 1000) + ".png";
+    targetImg.save(fileName);
     if (frameList.size() > frameListMax) frameList.remove(0);
-    frameList.add(context.depthImage());
+    frameList.add(loadImage(fileName));
     counter++;
   }
   

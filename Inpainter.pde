@@ -11,7 +11,7 @@ PImage img;
 PGraphics targetImg;
 
 void initMask() {
-  img = get();
+  img = depthImg;
   targetImg = createGraphics(img.width, img.height, JAVA2D);
   opencv = new OpenCV(this, img, true);
   canvas = (PGraphics2D) createGraphics(img.width, img.height, P2D);

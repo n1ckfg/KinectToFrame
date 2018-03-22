@@ -59,16 +59,18 @@ void setupKinect() {
   context.setMirror(mirror);
   context.enableDepth();
   //context.enableRGB();
+  //context.enableIR();
   if (align) {
-    //context.alternativeViewPointDepthToImage();
-    //context.setDepthColorSyncEnabled(true);
+    context.alternativeViewPointDepthToImage();
+    context.setDepthColorSyncEnabled(true);
   }
 }
 
 void updateKinect() {
   context.update();
   depthImg = context.depthImage();
-  rgbImg = context.rgbImage();
+  //rgbImg = context.rgbImage();
+  //rgbImg = context.irImage();
 }
 
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
