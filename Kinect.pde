@@ -58,10 +58,10 @@ void setupKinect() {
   context = new SimpleOpenNI(this);
   context.setMirror(mirror);
   context.enableDepth();
-  context.enableRGB();
+  //context.enableRGB();
   if (align) {
-    context.alternativeViewPointDepthToImage();
-    context.setDepthColorSyncEnabled(true);
+    //context.alternativeViewPointDepthToImage();
+    //context.setDepthColorSyncEnabled(true);
   }
 }
 
