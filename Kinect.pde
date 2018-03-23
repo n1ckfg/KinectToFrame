@@ -51,7 +51,7 @@ import SimpleOpenNI.*;
 
 SimpleOpenNI context;
 boolean align = true;
-boolean multithreaded = false;
+boolean multithreaded = true;
 
 void setupKinect() {
   depthImg = createImage(640, 480, RGB);

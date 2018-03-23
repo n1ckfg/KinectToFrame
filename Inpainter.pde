@@ -1,20 +1,22 @@
 import gab.opencv.*;
 import org.opencv.photo.Photo;
 import org.opencv.imgproc.Imgproc;
-import processing.opengl.PGraphics2D;
+//import processing.opengl.PGraphics2D;
 
-int threshold = 50;
+int threshold = 5;
 boolean flipVertical = false;
-PGraphics2D canvas;
+//PGraphics2D canvas;
+PGraphics canvas;
 OpenCV opencv, mask;
 PImage img;
 PGraphics targetImg;
 
 void initMask() {
   img = depthImg;
-  targetImg = createGraphics(img.width, img.height, JAVA2D);
+  targetImg = createGraphics(img.width, img.height, P2D);
   opencv = new OpenCV(this, img, true);
-  canvas = (PGraphics2D) createGraphics(img.width, img.height, P2D);
+  //canvas = (PGraphics2D) createGraphics(img.width, img.height, P2D);
+  canvas = createGraphics(img.width, img.height, P2D);
   mask = new OpenCV(this, canvas.width, canvas.height);
   canvas.beginDraw();
   canvas.background(0);
@@ -46,5 +48,5 @@ void processMask() {
 }
 
 void drawInpaintedImg() {
-  
+  //
 }
