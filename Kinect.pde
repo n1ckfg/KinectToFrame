@@ -1,5 +1,4 @@
 boolean mirror = false;
-boolean align = true;
 PImage depthImg, rgbImg;
 
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
@@ -51,11 +50,17 @@ void updateKinect() {
 import SimpleOpenNI.*;
 
 SimpleOpenNI context;
+boolean align = true;
+boolean multithreaded = false;
 
 void setupKinect() {
   depthImg = createImage(640, 480, RGB);
   rgbImg = createImage(640, 480, RGB);
-  context = new SimpleOpenNI(this);
+  if (multithreaded) {
+    context = new SimpleOpenNI(this,SimpleOpenNI.RUN_MODE_MULTI_THREADED);
+  } else {
+    context = new SimpleOpenNI(this);
+  }
   context.setMirror(mirror);
   context.enableDepth();
   //context.enableRGB();

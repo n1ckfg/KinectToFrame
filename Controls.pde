@@ -5,6 +5,7 @@ void keyPressed() {
     processMask();
     String fileName = "capture/frame_" + zeroPadding(counter, 1000) + ".png";
     targetImg.save(fileName);
+    //rgbImg.save(fileName);
     if (frameList.size() > frameListMax) frameList.remove(0);
     frameList.add(loadImage(fileName));
     counter++;
