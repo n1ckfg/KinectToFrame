@@ -56,7 +56,7 @@ void updateKinect() {
 import SimpleOpenNI.*;
 
 SimpleOpenNI context;
-int[] depthValues;
+int[] depthValues; // https://clab.concordia.ca/intro-to-kinect-processing/
 
 void setupKinect() {
   depthImg = createImage(640, 480, RGB);
