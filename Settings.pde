@@ -10,6 +10,7 @@ class Settings {
         if (data[i].equals("Multithreaded")) multithreaded = setBoolean(data[i+1]);
         if (data[i].equals("Align Depth and RGB")) align = setBoolean(data[i+1]);
         if (data[i].equals("Inpainting")) doInpainting = setBoolean(data[i+1]);
+        if (data[i].equals("Remap Depth to World")) remapWorld = setBoolean(data[i+1]);
       }
     } catch(Exception e) {
       println("Couldn't load settings file. Using defaults.");

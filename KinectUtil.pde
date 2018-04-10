@@ -53,8 +53,9 @@ int depth2rgb(short depth) {
   return pixel;
 }
 
-int depth2intensity(short depth) {
-  int d = Math.round((1 - (depth / 2047f)) * 255f);
+int depth2intensity(int depth) {//short depth) {
+  float maxDepth = 8000f; //2047f;
+  int d = round((1 - (depth / maxDepth)) * 255f);
   int pixel = (0xFF) << 24
       | (d & 0xFF) << 16
       | (d & 0xFF) << 8

@@ -9,3 +9,6 @@ true
 
 Inpainting
 true
+
+Remap Depth to World
+false

@@ -1,4 +1,7 @@
 boolean mirror = false;
+boolean align = true;
+boolean multithreaded = true;
+boolean remapWorld = false;
 PImage depthImg, rgbImg;
 
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
@@ -53,8 +56,7 @@ void updateKinect() {
 import SimpleOpenNI.*;
 
 SimpleOpenNI context;
-boolean align = true;
-boolean multithreaded = true;
+int[] depthValues;
 
 void setupKinect() {
   depthImg = createImage(640, 480, RGB);
@@ -76,7 +78,16 @@ void setupKinect() {
 
 void updateKinect() {
   context.update();
-  depthImg = context.depthImage();
+  if (remapWorld) {
+    depthValues = context.depthMap();
+    depthImg.loadPixels();
+    for (int i=0; i<depthValues.length; i++) {
+      depthImg.pixels[i] = depth2intensity(depthValues[i]);
+    }
+    depthImg.updatePixels();
+  } else {
+    depthImg = context.depthImage();
+  }
   rgbImg = context.rgbImage();
   //rgbImg = context.irImage();
 }
