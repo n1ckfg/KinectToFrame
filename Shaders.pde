@@ -1,4 +1,4 @@
-PShader shader, shader2; 
+PShader shader_rgba, shader_depth_color, shader_thresh; 
 //PImage rgbImg, depthImg;
 PGraphics tex;
 
@@ -8,10 +8,14 @@ PVector shaderMouseClick = new PVector(0,0);
 void setupShaders() {
   tex = createGraphics(width, height, P2D);
 
-  shader = loadShader("rgba.glsl"); 
-  shader2 = loadShader("depth_color.glsl"); 
-  shaderSetSize(shader);
-  shaderSetSize(shader2);
+  shader_rgba = loadShader("rgba.glsl"); 
+  shader_depth_color = loadShader("depth_color.glsl"); 
+  shader_thresh = loadShader("thresh.glsl");
+  
+  shaderSetSize(shader_rgba);
+  shaderSetSize(shader_depth_color);
+  shaderSetSize(shader_thresh);
+  
   //rgbImg = loadImage("rgb.png");
   //depthImg = loadImage("depth.png");
 }
@@ -20,18 +24,22 @@ void updateShaders() {
   //shaderSetMouse(shader);
   //shaderSetTime(shader);
   if (drawMode == DrawMode.RGBA) {
-    shaderSetTexture(shader, "tex0", rgbImg);
-    shaderSetTexture(shader, "tex1", depthImg);
+    shaderSetTexture(shader_rgba, "tex0", rgbImg);
+    shaderSetTexture(shader_rgba, "tex1", depthImg);
   } else if (drawMode == DrawMode.DEPTH_COLOR) {
-    shaderSetTexture(shader2, "tex0", depthImg);
+    shaderSetTexture(shader_depth_color, "tex0", depthImg);
   }
 }
 
-void drawShaders() {
-  filter(shader);
-}
+//void drawShaders() {
+  //filter(shader);
+//}
 
 // ~ ~ ~ ~ ~ ~ ~
+
+void shaderSetVar(PShader ps, String name, float val) {
+    ps.set(name, val);
+}
 
 void shaderSetSize(PShader ps) {
   ps.set("iResolution", float(width), float(height), 1.0);

@@ -43,7 +43,7 @@ void draw() {
     
     if (drawMode == DrawMode.RGBA) {
       tex.beginDraw();
-      tex.filter(shader);
+      tex.filter(shader_rgba);
       tex.endDraw();
     } else if (drawMode == DrawMode.DEPTH_ONLY) {
       tex.beginDraw();
@@ -55,7 +55,7 @@ void draw() {
       tex.endDraw();
     } else if (drawMode == DrawMode.DEPTH_COLOR) {
       tex.beginDraw();
-      tex.filter(shader2);
+      tex.filter(shader_depth_color);
       tex.endDraw();
     }
     
@@ -77,7 +77,7 @@ void draw() {
     fill(255);
     text(""+drawMode, fontSize - 1, 1.5 * fontSize - 1);
   }
-  println(playbackCounter + " " + frameList.size() + " " + isPlaying);
+  //println(playbackCounter + " " + frameList.size() + " " + isPlaying);
   
   lastMillis = millis();
 } 

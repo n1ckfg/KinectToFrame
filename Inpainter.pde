@@ -12,6 +12,10 @@ OpenCV opencv, mask;
 PImage img;
 PGraphics targetImg;
 
+void setupMask() {
+
+}
+
 void initMask() {
   img = depthImg;
   targetImg = createGraphics(img.width, img.height, P2D);
@@ -20,22 +24,31 @@ void initMask() {
   canvas = createGraphics(img.width, img.height, P2D);
   mask = new OpenCV(this, canvas.width, canvas.height);
   canvas.beginDraw();
-  canvas.background(0);
+  canvas.background(0); 
   canvas.endDraw();
 }
 
 void processMask() {
   canvas.beginDraw();
+  //shaderSetVar(shader_thresh, "threshold", threshold);
+  //shaderSetTexture(shader_thresh, "tex0", img);
+  //canvas.filter(shader_thresh);
+  
   img.loadPixels();
   canvas.loadPixels();
   for (int i=0; i<canvas.pixels.length; i++) {
-    if (red(img.pixels[i]) <= threshold) {
+    float r = red(img.pixels[i]);
+    float g = green(img.pixels[i]);
+    float b = blue(img.pixels[i]);
+    float avg = (r + g + b) / 3;
+    if (avg <= threshold) {
       canvas.pixels[i] = color(255);
     } else {
       canvas.pixels[i] = color(0);
     }
   }  
   canvas.updatePixels();
+
   canvas.endDraw();
  
   mask.loadImage(canvas);
@@ -48,6 +61,6 @@ void processMask() {
   targetImg.endDraw();
 }
 
-void drawInpaintedImg() {
+//void drawInpaintedImg() {
   //
-}
+//}
