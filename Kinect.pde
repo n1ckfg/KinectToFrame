@@ -46,7 +46,10 @@ void updateKinect() {
 */
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
-// SIMPLEOPENNI (Kinect v1, all platforms)
+// SIMPLEOPENNI (Kinect v1 and clones, all platforms)
+// NOTE: PrimeSense and Asus Xtion clones on Windows + some USB3 chipsets cannot do simultaneous depth and RGB.
+// If this affect you, comment out the RGB lines and use depth only.
+
 import SimpleOpenNI.*;
 
 SimpleOpenNI context;
@@ -63,7 +66,7 @@ void setupKinect() {
   }
   context.setMirror(mirror);
   context.enableDepth();
-  //context.enableRGB();
+  context.enableRGB();
   //context.enableIR();
   if (align) {
     context.alternativeViewPointDepthToImage();
@@ -74,7 +77,7 @@ void setupKinect() {
 void updateKinect() {
   context.update();
   depthImg = context.depthImage();
-  //rgbImg = context.rgbImage();
+  rgbImg = context.rgbImage();
   //rgbImg = context.irImage();
 }
 

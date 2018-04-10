@@ -1,0 +1,11 @@
+Mirror
+true
+
+Multithreaded
+true
+
+Align Depth and RGB
+true
+
+Inpainting
+true
