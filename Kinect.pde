@@ -56,9 +56,12 @@ void updateKinect() {
 import SimpleOpenNI.*;
 
 SimpleOpenNI context;
-int[] depthValues; // https://clab.concordia.ca/intro-to-kinect-processing/
+int[] depthMap; // https://clab.concordia.ca/intro-to-kinect-processing/
+PVector[] realWorldMap;
 
 void setupKinect() {
+  setupDepthLookUp();
+  
   depthImg = createImage(640, 480, RGB);
   rgbImg = createImage(640, 480, RGB);
   if (multithreaded) {
@@ -76,14 +79,22 @@ void setupKinect() {
   }
 }
 
+float maxZ = 4000;
 void updateKinect() {
   context.update();
   if (remapWorld) {
-    depthValues = context.depthMap();
+    realWorldMap = context.depthMapRealWorld();
     depthImg.loadPixels();
-    for (int i=0; i<depthValues.length; i++) {
-      depthImg.pixels[i] = depth2intensity(depthValues[i]);
+    //float maxZ = 0;
+    for (int i=0; i<depthImg.pixels.length; i++) {
+      //if (realWorldMap[i].z > maxZ) maxZ = realWorldMap[i].z;
+      if (realWorldMap[i].z < 1) {
+        depthImg.pixels[i] = color(0);
+      } else {
+        depthImg.pixels[i] = color(map(realWorldMap[i].z, 0, maxZ, 255, 0));
+      }
     }
+    //println(maxZ);
     depthImg.updatePixels();
   } else {
     depthImg = context.depthImage();

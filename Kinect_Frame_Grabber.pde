@@ -36,6 +36,11 @@ void setup() {
 void draw() {
   background(0);
   
+  if (mousePressed && remapWorld) {
+    maxZ = map(mouseY, 0, height, 0, 8000);
+    println ("New max Z: " + maxZ);
+  }
+  
   if (!isPlaying || frameList.size() < 1) {
     redFlash.run();
     updateKinect();
@@ -78,6 +83,11 @@ void draw() {
     text(""+drawMode, fontSize - 1, 1.5 * fontSize - 1);
   }
   //println(playbackCounter + " " + frameList.size() + " " + isPlaying);
+  if (mousePressed && remapWorld) {
+    stroke(255);
+    strokeWeight(2);
+    line(mouseX, mouseY, lastMousePress.x, lastMousePress.y);
+  }
   
   lastMillis = millis();
 } 

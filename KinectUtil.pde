@@ -77,3 +77,24 @@ PVector depthToWorld(int x, int y, float [] depthLookUp, int depthValue) {
   result.z = (float)(depth);
   return result;
 }
+
+// http://shiffman.net/p5/kinect/
+
+// depthInMeters = 1.0 / (rawDepth * -0.0030711016 + 3.3309495161);
+// Rather than do this calculation all the time, we can precompute all of these
+// values in a lookup table since there are only 2048 depth values.
+
+float[] depthLookUp = new float[2048];
+
+void setupDepthLookUp() {
+  for (int i = 0; i < depthLookUp.length; i++) {
+    depthLookUp[i] = rawDepthToMeters(i);
+  }
+}
+
+float rawDepthToMeters(int depthValue) {
+  if (depthValue < 2047) {
+    return (float)(1.0 / ((double)(depthValue) * -0.0030711016 + 3.3309495161));
+  }
+  return 0.0f;
+}

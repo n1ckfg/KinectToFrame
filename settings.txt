@@ -12,3 +12,6 @@ true
 
 Remap Depth to World
 false
+
+Maximum Remapped Z Depth
+5000
