@@ -4,9 +4,13 @@ class Settings {
   String name = "settings.txt";
   
   Settings(String _s) {
+    name = _s;
+    read();
+  }
+  
+  void read() {
     try {
-      name = _s;
-      data = loadStrings(_s);
+      data = loadStrings(name);
       for (int i=0;i<data.length;i++) {
         if (data[i].equals("Mirror")) mirror = readBoolean(i);
         if (data[i].equals("Multithreaded")) multithreaded = readBoolean(i);
