@@ -2,7 +2,7 @@ Mirror
 true
 
 Multithreaded
-true
+false
 
 Align Depth and RGB
 true
