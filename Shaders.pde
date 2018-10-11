@@ -45,6 +45,10 @@ void shaderSetSize(PShader ps) {
   ps.set("iResolution", float(width), float(height), 1.0);
 }
 
+void shaderSetSize(PShader ps, float w, float h) {
+  ps.set("iResolution", w, h, 1.0);
+}
+
 void shaderSetMouse(PShader ps) {
   if (mousePressed) shaderMousePos = new PVector(mouseX, height - mouseY);
   ps.set("iMouse", shaderMousePos.x, shaderMousePos.y, shaderMouseClick.x, shaderMouseClick.y);
